@@ -46,6 +46,14 @@ public class Run {
                 }
             });
         }
+        Counter reentrantLock = new Counter();
+        for (int i = 0; i < threadCount; i++) {
+            executorService.submit(() -> {
+                for (int t = 0; t < incrementCallTime; t++) {
+                    reentrantLock.synchronizedIncrementMethod();
+                }
+            });
+        }
         executorService.shutdown();
         if (!executorService.awaitTermination(60, TimeUnit.SECONDS)) {
             executorService.shutdownNow();
@@ -53,6 +61,7 @@ public class Run {
         System.out.println("Total processed In Thread Safe Version With Method synchronizedIncrementMethod " + synchronizedIncrementMethod.getCounter());
         System.out.println("Total processed In Thread Safe Version With Method synchronizedIncrementBlockMethod " + synchronizedIncrementBlockMethod.getCounter());
         System.out.println("Total processed In Thread Safe Version With Method SynchronizedCounterPrivateLock " + synchronizedCounterPrivateLock.getCounter());
+        System.out.println("Total processed In Thread Safe Version With Method ReenTrantLock " + reentrantLock.getCounter());
         System.out.println("Total processed In Not Thread Safe Version: " + counter.getCounter());
 
     }

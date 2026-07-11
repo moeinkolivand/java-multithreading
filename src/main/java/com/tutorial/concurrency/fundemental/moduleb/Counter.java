@@ -1,9 +1,11 @@
 package com.tutorial.concurrency.fundemental.moduleb;
 
+import java.util.concurrent.locks.ReentrantLock;
+
 public class Counter {
     private int counter = 0;
     private final Object lock = new Object();
-
+    private final ReentrantLock reentrantLock = new ReentrantLock();
 
     public void increment() {
         try {
@@ -50,7 +52,17 @@ public class Counter {
             }
             counter++;
         }
-
     }
+
+
+    public void reentrantLockLockCounterPrivateLock() {
+        reentrantLock.lock();
+        try {
+            counter++;
+        } finally {
+            reentrantLock.unlock();
+        }
+    }
+
 
 }
