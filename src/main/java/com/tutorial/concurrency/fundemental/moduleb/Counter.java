@@ -55,7 +55,7 @@ public class Counter {
     }
 
 
-    public void reentrantLockLockCounterPrivateLock() {
+    public void reentrantLock() {
         reentrantLock.lock();
         try {
             counter++;

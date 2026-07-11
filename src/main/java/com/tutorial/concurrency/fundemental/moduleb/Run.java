@@ -50,7 +50,7 @@ public class Run {
         for (int i = 0; i < threadCount; i++) {
             executorService.submit(() -> {
                 for (int t = 0; t < incrementCallTime; t++) {
-                    reentrantLock.synchronizedIncrementMethod();
+                    reentrantLock.reentrantLock();
                 }
             });
         }
