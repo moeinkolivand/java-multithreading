@@ -2,10 +2,12 @@ package com.tutorial.concurrency.fundemental.moduled;
 
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.concurrent.LinkedBlockingQueue;
 
 public class BoundedBuffer<T> {
     private final Queue<T> queue = new LinkedList<>();
     private final int capacity;
+    private final LinkedBlockingQueue<T> linkedBlockingQueue = new LinkedBlockingQueue<>();
 
     public BoundedBuffer(int capacity) {
         this.capacity = capacity;
@@ -36,4 +38,22 @@ public class BoundedBuffer<T> {
         this.notifyAll();
         return item;
     }
+
+    public void putWithLinkedBlockingQueue(T item) {
+        try {
+            linkedBlockingQueue.put(item);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public T takeWithLinkedBlockingQueue() {
+        try {
+            return linkedBlockingQueue.take();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
 }
