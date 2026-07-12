@@ -1,4 +1,4 @@
-package com.tutorial.concurrency.fundemental;
+package com.tutorial.concurrency.fundemental.moduleg;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
