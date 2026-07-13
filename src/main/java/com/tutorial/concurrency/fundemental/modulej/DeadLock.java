@@ -1,11 +1,10 @@
-package com.tutorial.concurrency.fundemental.modulek;
+package com.tutorial.concurrency.fundemental.modulej;
 
 import java.lang.management.ManagementFactory;
 import java.lang.management.ThreadInfo;
 import java.lang.management.ThreadMXBean;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.stream.LongStream;
 
 public class DeadLock {
     private static final Object lockA = new Object();
